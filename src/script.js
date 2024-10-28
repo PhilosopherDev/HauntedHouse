@@ -25,6 +25,14 @@ const sphere = new THREE.Mesh(
 )
 scene.add(sphere)
 
+// Floor
+const floor = new THREE.Mesh(
+    new THREE.PlaneGeometry(20, 20),
+    new THREE.MeshStandardMaterial()
+)
+
+scene.add(floor)
+
 /**
  * Lights
  */
@@ -45,8 +53,7 @@ const sizes = {
     height: window.innerHeight
 }
 
-window.addEventListener('resize', () =>
-{
+window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth
     sizes.height = window.innerHeight
@@ -88,8 +95,7 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
  */
 const timer = new Timer()
 
-const tick = () =>
-{
+const tick = () => {
     // Timer
     timer.update()
     const elapsedTime = timer.getElapsed()
