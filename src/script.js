@@ -35,6 +35,12 @@ const doorMeasurements = {
     height: 2.2,
 }
 
+const bushesMeasurements = {
+    radius: 1,
+    widthSegments: 16,
+    heightSegments: 16,
+}
+
 // Floor
 const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(20, 20),
@@ -76,6 +82,30 @@ const door = new THREE.Mesh(
 door.position.y += doorMeasurements.height / 2 - 0.1; // 딱 절반 맞추면 texture 적용했을 때 살짝 떠보일 수 있어서 0.1 땅에 묻어둔다.
 door.position.z += houseMeasurements.depth / 2 + 0.01; // 0.01로 z-fighting 해결
 house.add(door);
+
+// Bushes
+const bushGeometry = new THREE.SphereGeometry(bushesMeasurements.radius, bushesMeasurements.widthSegments, bushesMeasurements.heightSegments);
+const bushMaterial = new THREE.MeshStandardMaterial();
+
+const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush1.scale.set(0.5, 0.5, 0.5);
+bush1.position.set(0.8, 0.2, 2.2);
+house.add(bush1);
+
+const bush2 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush2.scale.set(0.25, 0.25, 0.25);
+bush2.position.set(1.4, 0.1, 2.1);
+house.add(bush2);
+
+const bush3 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush3.scale.set(0.4, 0.4, 0.4);
+bush3.position.set(-0.8, 0.1, 2.2);
+house.add(bush3);
+
+const bush4 = new THREE.Mesh(bushGeometry, bushMaterial);
+bush4.scale.set(0.15, 0.15, 0.15);
+bush4.position.set(-1, 0.05, 2.6);
+house.add(bush4);
 
 /**
  * Lights
