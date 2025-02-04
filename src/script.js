@@ -37,7 +37,9 @@ const walls = new THREE.Mesh(
     new THREE.BoxGeometry(4, 2.5, 4),
     new THREE.MeshStandardMaterial()
 )
-house.add(walls)
+walls.position.y += 1.25; // 벽을 딱 지면에 붙이는 작업
+house.add(walls);
+
 
 /**
  * Lights
