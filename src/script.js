@@ -30,6 +30,11 @@ const roofMeasurements = {
     radialSegments: 4,
 }
 
+const doorMeasurements = {
+    width: 2.2,
+    height: 2.2,
+}
+
 // Floor
 const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(20, 20),
@@ -58,8 +63,19 @@ const roof = new THREE.Mesh(
     new THREE.MeshStandardMaterial()
 )
 roof.position.y += (houseMeasurements.height + (roofMeasurements.height / 2));
-roof.rotation.y = Math.PI / 4;
+roof.rotation.y = Math.PI / 4; // 지붕 45도 돌리기
 house.add(roof);
+
+// Door
+const door = new THREE.Mesh(
+    new THREE.PlaneGeometry(doorMeasurements.width, doorMeasurements.height),
+    new THREE.MeshStandardMaterial({
+        color: 'red' // z-fighting, 메쉬가 겹치면 색상이 껌뻑거린다
+    })
+)
+door.position.y += doorMeasurements.height / 2 - 0.1; // 딱 절반 맞추면 texture 적용했을 때 살짝 떠보일 수 있어서 0.1 땅에 묻어둔다.
+door.position.z += houseMeasurements.depth / 2 + 0.01; // 0.01로 z-fighting 해결
+house.add(door);
 
 /**
  * Lights
