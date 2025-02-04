@@ -58,6 +58,7 @@ const roof = new THREE.Mesh(
     new THREE.MeshStandardMaterial()
 )
 roof.position.y += (houseMeasurements.height + (roofMeasurements.height / 2));
+roof.rotation.y = Math.PI / 4;
 house.add(roof);
 
 /**
