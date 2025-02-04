@@ -18,6 +18,11 @@ const scene = new THREE.Scene()
 /**
  * House
  */
+const houseMesurements = {
+    width: 4,
+    height: 2.5,
+    depth: 4,
+}
 
 // Floor
 const floor = new THREE.Mesh(
@@ -34,10 +39,10 @@ scene.add(house);
 
 // Walls 
 const walls = new THREE.Mesh(
-    new THREE.BoxGeometry(4, 2.5, 4),
+    new THREE.BoxGeometry(houseMesurements.width, houseMesurements.height, houseMesurements.depth),
     new THREE.MeshStandardMaterial()
 )
-walls.position.y += 1.25; // 벽을 딱 지면에 붙이는 작업
+walls.position.y += houseMesurements.height / 2; // 벽을 딱 지면에 붙이는 작업
 house.add(walls);
 
 
