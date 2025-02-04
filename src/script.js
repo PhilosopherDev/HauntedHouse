@@ -28,7 +28,9 @@ floor.rotation.x = -Math.PI * 0.5;
 
 scene.add(floor)
 
-
+// House Container
+const house = new THREE.Group();
+scene.add(house);
 
 /**
  * Lights
