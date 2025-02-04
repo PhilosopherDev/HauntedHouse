@@ -18,10 +18,16 @@ const scene = new THREE.Scene()
 /**
  * House
  */
-const houseMesurements = {
+const houseMeasurements = {
     width: 4,
     height: 2.5,
     depth: 4,
+}
+
+const roofMeasurements = {
+    radius: 3.5,
+    height: 1.5,
+    radialSegments: 4,
 }
 
 // Floor
@@ -39,12 +45,20 @@ scene.add(house);
 
 // Walls 
 const walls = new THREE.Mesh(
-    new THREE.BoxGeometry(houseMesurements.width, houseMesurements.height, houseMesurements.depth),
+    new THREE.BoxGeometry(houseMeasurements.width, houseMeasurements.height, houseMeasurements.depth),
     new THREE.MeshStandardMaterial()
 )
-walls.position.y += houseMesurements.height / 2; // 벽을 딱 지면에 붙이는 작업
+walls.position.y += houseMeasurements.height / 2; // 벽을 딱 지면에 붙이는 작업
 house.add(walls);
 
+// 집 뚜껑을 만들건데, 피라미드 모양을 직접 지원하지 않는데 cone 을 응용하면 피라미드 모양이 나온다. radialSegment를 4로 주면 바닥이 사각형인 사각뿔이 된다. 
+// Root
+const roof = new THREE.Mesh(
+    new THREE.ConeGeometry(roofMeasurements.radius, roofMeasurements.height, roofMeasurements.radialSegments),
+    new THREE.MeshStandardMaterial()
+)
+roof.position.y += (houseMeasurements.height + (roofMeasurements.height / 2));
+house.add(roof);
 
 /**
  * Lights
