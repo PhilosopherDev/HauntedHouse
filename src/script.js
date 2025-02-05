@@ -41,6 +41,12 @@ const bushesMeasurements = {
     heightSegments: 16,
 }
 
+const gravesMeasurement = {
+    width: 0.6,
+    height: 0.8,
+    depth: 0.2,
+}
+
 // Floor
 const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(20, 20),
@@ -103,6 +109,40 @@ const bush4 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush4.scale.set(0.15, 0.15, 0.15);
 bush4.position.set(-1, 0.05, 2.6);
 house.add(bush1, bush2, bush3, bush4);
+
+// Graves - house에 포함되지 않는다. 새로고침 할 때마다 새로운 위치에서 생성시킬건데, 집에 붙어 있지 않게하려고함. 
+
+const graveGeometry = new THREE.BoxGeometry(gravesMeasurement.width, gravesMeasurement.height, gravesMeasurement.depth);
+const graveMaterial = new THREE.MeshStandardMaterial();
+
+// Grave container
+const graves = new THREE.Group();
+scene.add(graves);
+
+for (let i = 0; i < 30; i++) {
+    const minCircleRadius = 4;
+    const maxCircleRadius = 7;
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * (maxCircleRadius - minCircleRadius) + minCircleRadius; // 큰 원과 작은 원 사이에 랜덤하게 위치하도록하는 계산 값.
+    const x = Math.sin(angle) * radius;
+    const z = Math.cos(angle) * radius;
+
+    // Mesh
+    const grave = new THREE.Mesh(graveGeometry, graveMaterial);
+
+    // 위치 지정, 작은 원과 큰 원 사이에 있으면서, 튀어나온 정도도 다 다르도록 처리.
+    grave.position.x = x;
+    grave.position.z = z;
+    grave.position.y = Math.random() * (gravesMeasurement.height / 2);
+
+    // 각도도 살짝씩 비틀어준다. 너무 많이 눕지 않도록 값도 작게 해준다. 
+    grave.rotation.x = (Math.random() - 0.5) / 4;
+    grave.rotation.y = (Math.random() - 0.5) / 4;
+    grave.rotation.z = (Math.random() - 0.5) / 4;
+
+    graves.add(grave);
+}
+
 
 /**
  * Lights
