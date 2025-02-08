@@ -16,6 +16,15 @@ const canvas = document.querySelector('canvas.webgl')
 const scene = new THREE.Scene()
 
 /**
+ * Textures
+ */
+const textureLoader = new THREE.TextureLoader();
+
+// Floor
+const floorAlphaTexture = textureLoader.load('./floor/alpha.jpg'); // 경로에 static 적지 말 것. vite 가 처리한다.
+
+
+/**
  * House
  */
 const houseMeasurements = {
@@ -50,7 +59,10 @@ const gravesMeasurement = {
 // Floor
 const floor = new THREE.Mesh(
     new THREE.PlaneGeometry(20, 20),
-    new THREE.MeshStandardMaterial()
+    new THREE.MeshStandardMaterial({
+        alphaMap: floorAlphaTexture,
+        transparent: true, // alpha 사용할 땐 transparent: true 속성줘야 된다.
+    })
 )
 floor.rotation.x = -Math.PI * 0.5;
 
