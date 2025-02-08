@@ -17,6 +17,11 @@ const scene = new THREE.Scene()
 
 /**
  * Textures
+ * Texture 다운로드 받을 때 각 파트 별로 어떤 확장자로 받을지, 어떤 부분만 받을지에 따라 용량이 달라진다. 
+ * 추후 추가적으로 최적화도 가능하다.
+ * WebGL 에서 사용할 것이므로 용량이 너무 클 필요 없다. 
+ * 보통, texture 는 jpg, normal 에 png 를 사용한다고 한다. 
+ * jpg 는 압축되어 있어서 품질 손실이 있을 수 있어서, 디테일한 요소를 보여야할 경우엔 png 를 사용한다.
  */
 const textureLoader = new THREE.TextureLoader();
 
