@@ -193,6 +193,7 @@ house.add(door);
 // Bushes
 const bushGeometry = new THREE.SphereGeometry(bushesMeasurements.radius, bushesMeasurements.widthSegments, bushesMeasurements.heightSegments);
 const bushMaterial = new THREE.MeshStandardMaterial({
+    color: '#ccffcc',
     map: bushColorTexture,
     aoMap: bushARMTexture,
     roughnessMap: bushARMTexture,
