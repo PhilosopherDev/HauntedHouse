@@ -58,6 +58,8 @@ const wallNormalTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/c
 wallColorTexture.colorSpace = THREE.SRGBColorSpace;
 
 // Roof
+// ConeGeometry 로 Pyramid 모양을 만들어서 조명이 이상하게 들어오는 문제가 생길 수 있다고 한다. 
+// 1. 추후에 직접 blender로 모델 만들어서 uv unwrap으로 해결해볼 예정  2. BufferGeometry 로 직접 만들어서 해결 가능
 const roofColorTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_diff_1k.jpg');
 const roofARMTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_arm_1k.jpg');
 const roofNormalTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_nor_gl_1k.jpg');
@@ -71,6 +73,8 @@ roofNormalTexture.repeat.set(3, 1);
 roofColorTexture.wrapS = THREE.ReapeatWrapping;
 roofARMTexture.wrapS = THREE.ReapeatWrapping;
 roofNormalTexture.wrapS = THREE.ReapeatWrapping;
+
+
 
 /**
  * House
