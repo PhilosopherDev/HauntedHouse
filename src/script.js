@@ -32,7 +32,20 @@ const floorARMTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast
 const floorNormalTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.jpg');
 const floorDisplacementTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.jpg');
 
+floorColorTexture.repeat.set(8, 8);
+floorARMTexture.repeat.set(8, 8);
+floorNormalTexture.repeat.set(8, 8);
+floorDisplacementTexture.repeat.set(8, 8);
 
+floorColorTexture.wrapS = THREE.ReapeatWrapping;
+floorARMTexture.wrapS = THREE.ReapeatWrapping;
+floorNormalTexture.wrapS = THREE.ReapeatWrapping;
+floorDisplacementTexture.wrapS = THREE.ReapeatWrapping;
+
+floorColorTexture.wrapT = THREE.ReapeatWrapping;
+floorARMTexture.wrapT = THREE.ReapeatWrapping;
+floorNormalTexture.wrapT = THREE.ReapeatWrapping;
+floorDisplacementTexture.wrapT = THREE.ReapeatWrapping;
 /**
  * House
  */
