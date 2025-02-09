@@ -58,7 +58,7 @@ const wallNormalTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/c
 wallColorTexture.colorSpace = THREE.SRGBColorSpace;
 
 // Roof
-// ConeGeometry 로 Pyramid 모양을 만들어서 조명이 이상하게 들어오는 문제가 생길 수 있다고 한다. 
+// ConeGeometry 로 Pyramid 모양을 만들어서 조명이 이상하게 들어오는 문제가 생길 수 있다고 한다. 자세히 보면 벽돌도 사선으로 나온다. 
 // 1. 추후에 직접 blender로 모델 만들어서 uv unwrap으로 해결해볼 예정  2. BufferGeometry 로 직접 만들어서 해결 가능
 const roofColorTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_diff_1k.jpg');
 const roofARMTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_arm_1k.jpg');
@@ -74,6 +74,21 @@ roofColorTexture.wrapS = THREE.ReapeatWrapping;
 roofARMTexture.wrapS = THREE.ReapeatWrapping;
 roofNormalTexture.wrapS = THREE.ReapeatWrapping;
 
+// Bush
+// 마찬가지로 SphereGeometry 에서도 정수리 부분이 이상하게 나온다. a-hole at the top. 이것도 Roof랑 동일하게 추후 해결 가능하다. 
+const bushColorTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_diff_1k.jpg');
+const bushARMTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_arm_1k.jpg');
+const bushNormalTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_nor_gl_1k.jpg');
+
+bushColorTexture.colorSpace = THREE.SRGBColorSpace;
+
+bushColorTexture.repeat.set(2, 1);
+bushARMTexture.repeat.set(2, 1);
+bushNormalTexture.repeat.set(2, 1);
+
+bushColorTexture.wrapS = THREE.ReapeatWrapping;
+bushARMTexture.wrapS = THREE.ReapeatWrapping;
+bushNormalTexture.wrapS = THREE.ReapeatWrapping;
 
 
 /**
@@ -177,23 +192,33 @@ house.add(door);
 
 // Bushes
 const bushGeometry = new THREE.SphereGeometry(bushesMeasurements.radius, bushesMeasurements.widthSegments, bushesMeasurements.heightSegments);
-const bushMaterial = new THREE.MeshStandardMaterial();
+const bushMaterial = new THREE.MeshStandardMaterial({
+    map: bushColorTexture,
+    aoMap: bushARMTexture,
+    roughnessMap: bushARMTexture,
+    metalnessMap: bushARMTexture,
+    normalMap: bushNormalTexture,
+});
 
 const bush1 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush1.scale.set(0.5, 0.5, 0.5);
 bush1.position.set(0.8, 0.2, 2.2);
+bush1.rotation.x = -0.75; // Texture 이상하게 먹은거 그냥 돌려서 가려준다ㅋㅋ keep it simple
 
 const bush2 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush2.scale.set(0.25, 0.25, 0.25);
 bush2.position.set(1.4, 0.1, 2.1);
+bush2.rotation.x = -0.75;
 
 const bush3 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush3.scale.set(0.4, 0.4, 0.4);
 bush3.position.set(-0.8, 0.1, 2.2);
+bush3.rotation.x = -0.75;
 
 const bush4 = new THREE.Mesh(bushGeometry, bushMaterial);
 bush4.scale.set(0.15, 0.15, 0.15);
 bush4.position.set(-1, 0.05, 2.6);
+bush4.rotation.x = -0.75;
 house.add(bush1, bush2, bush3, bush4);
 
 // Graves - house에 포함되지 않는다. 새로고침 할 때마다 새로운 위치에서 생성시킬건데, 집에 붙어 있지 않게하려고함. 
