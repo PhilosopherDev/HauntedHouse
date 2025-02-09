@@ -88,6 +88,10 @@ const floor = new THREE.Mesh(
         alphaMap: floorAlphaTexture,
         transparent: true, // alpha 사용할 땐 transparent: true 속성줘야 된다.
         map: floorColorTexture,
+        aoMap: floorARMTexture,
+        roughnessMap: floorARMTexture,
+        metalnessMap: floorARMTexture,
+        normalMap: floorNormalTexture,
     })
 )
 floor.rotation.x = -Math.PI * 0.5;
