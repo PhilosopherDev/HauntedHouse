@@ -130,6 +130,8 @@ const roofMeasurements = {
 const doorMeasurements = {
     width: 2.2,
     height: 2.2,
+    widthSegments: 100,
+    heightSegments: 100,
 }
 
 const bushesMeasurements = {
@@ -202,7 +204,7 @@ house.add(roof);
 
 // Door
 const door = new THREE.Mesh(
-    new THREE.PlaneGeometry(doorMeasurements.width, doorMeasurements.height),
+    new THREE.PlaneGeometry(doorMeasurements.width, doorMeasurements.height, doorMeasurements.widthSegments, doorMeasurements.heightSegments),
     new THREE.MeshStandardMaterial({
         // color: 'red' // z-fighting, 메쉬가 겹치면 색상이 껌뻑거린다
         map: doorColorTexture,
@@ -210,6 +212,8 @@ const door = new THREE.Mesh(
         transparent: true,
         aoMap: doorAmbientOcclusionTexture,
         displacementMap: doorHeightTexture, // displacement를 height 라고도 한다.
+        displacementScale: 0.15,
+        displacementBias: - 0.04,
         normalMap: doorNormalTexture,
         metalnessMap: doorMetalnessTexture,
         roughnessMap: doorRoughnessTexture,
