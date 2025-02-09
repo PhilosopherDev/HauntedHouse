@@ -32,6 +32,9 @@ const floorARMTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast
 const floorNormalTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.jpg');
 const floorDisplacementTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.jpg');
 
+// 약간 색상이 회색을 띄어서 나오는데 이게 color texture의 경우 data texture와 달리sRGB 로 encoding 되어 있어서 그렇다고한다. 이 처리를 해줌으로써 Linear 변환 이후 정확한 계산 및 처리가 된다고 하는데 자세한건 차차 알아가자.
+floorColorTexture.colorSpace = THREE.SRGBColorSpace;
+
 floorColorTexture.repeat.set(8, 8);
 floorARMTexture.repeat.set(8, 8);
 floorNormalTexture.repeat.set(8, 8);
