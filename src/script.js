@@ -90,6 +90,17 @@ bushColorTexture.wrapS = THREE.ReapeatWrapping;
 bushARMTexture.wrapS = THREE.ReapeatWrapping;
 bushNormalTexture.wrapS = THREE.ReapeatWrapping;
 
+// Grave
+const graveColorTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_diff_1k.jpg');
+const graveARMTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_arm_1k.jpg');
+const graveNormalTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_nor_gl_1k.jpg');
+
+graveColorTexture.colorSpace = THREE.SRGBColorSpace;
+
+graveColorTexture.repeat.set(0.3, 0.4);
+graveARMTexture.repeat.set(0.3, 0.4);
+graveNormalTexture.repeat.set(0.3, 0.4);
+
 
 /**
  * House
@@ -225,7 +236,13 @@ house.add(bush1, bush2, bush3, bush4);
 // Graves - house에 포함되지 않는다. 새로고침 할 때마다 새로운 위치에서 생성시킬건데, 집에 붙어 있지 않게하려고함. 
 
 const graveGeometry = new THREE.BoxGeometry(gravesMeasurement.width, gravesMeasurement.height, gravesMeasurement.depth);
-const graveMaterial = new THREE.MeshStandardMaterial();
+const graveMaterial = new THREE.MeshStandardMaterial({
+    map: graveColorTexture,
+    aoMap: graveARMTexture,
+    roughnessMap: graveARMTexture,
+    metalnessMap: graveARMTexture,
+    normalMap: graveNormalTexture,
+});
 
 // Grave container
 const graves = new THREE.Group();
