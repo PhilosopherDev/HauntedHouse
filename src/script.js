@@ -57,6 +57,21 @@ const wallNormalTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/c
 
 wallColorTexture.colorSpace = THREE.SRGBColorSpace;
 
+// Roof
+const roofColorTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_diff_1k.jpg');
+const roofARMTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_arm_1k.jpg');
+const roofNormalTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_nor_gl_1k.jpg');
+
+roofColorTexture.colorSpace = THREE.SRGBColorSpace;
+
+roofColorTexture.repeat.set(3, 1);
+roofARMTexture.repeat.set(3, 1);
+roofNormalTexture.repeat.set(3, 1);
+
+roofColorTexture.wrapS = THREE.ReapeatWrapping;
+roofARMTexture.wrapS = THREE.ReapeatWrapping;
+roofNormalTexture.wrapS = THREE.ReapeatWrapping;
+
 /**
  * House
  */
@@ -130,10 +145,16 @@ walls.position.y += houseMeasurements.height / 2; // 벽을 딱 지면에 붙이
 house.add(walls);
 
 // 집 뚜껑을 만들건데, 피라미드 모양을 직접 지원하지 않는데 cone 을 응용하면 피라미드 모양이 나온다. radialSegment를 4로 주면 바닥이 사각형인 사각뿔이 된다. 
-// Root
+// Roof
 const roof = new THREE.Mesh(
     new THREE.ConeGeometry(roofMeasurements.radius, roofMeasurements.height, roofMeasurements.radialSegments),
-    new THREE.MeshStandardMaterial()
+    new THREE.MeshStandardMaterial({
+        map: roofColorTexture,
+        aoMap: roofARMTexture,
+        roughnessMap: roofARMTexture,
+        metalnessMap: roofARMTexture,
+        normalMap: roofNormalTexture,
+    })
 )
 roof.position.y += (houseMeasurements.height + (roofMeasurements.height / 2));
 roof.rotation.y = Math.PI / 4; // 지붕 45도 돌리기
