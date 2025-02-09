@@ -49,6 +49,14 @@ floorColorTexture.wrapT = THREE.ReapeatWrapping;
 floorARMTexture.wrapT = THREE.ReapeatWrapping;
 floorNormalTexture.wrapT = THREE.ReapeatWrapping;
 floorDisplacementTexture.wrapT = THREE.ReapeatWrapping;
+
+// Wall
+const wallColorTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_diff_1k.jpg');
+const wallARMTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_arm_1k.jpg');
+const wallNormalTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_nor_gl_1k.jpg');
+
+wallColorTexture.colorSpace = THREE.SRGBColorSpace;
+
 /**
  * House
  */
@@ -110,7 +118,13 @@ scene.add(house);
 // Walls 
 const walls = new THREE.Mesh(
     new THREE.BoxGeometry(houseMeasurements.width, houseMeasurements.height, houseMeasurements.depth),
-    new THREE.MeshStandardMaterial()
+    new THREE.MeshStandardMaterial({
+        map: wallColorTexture,
+        aoMap: wallARMTexture,
+        roughnessMap: wallARMTexture,
+        metalnessMap: wallARMTexture,
+        normalMap: wallNormalTexture,
+    })
 )
 walls.position.y += houseMeasurements.height / 2; // 벽을 딱 지면에 붙이는 작업
 house.add(walls);
