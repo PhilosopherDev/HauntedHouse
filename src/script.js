@@ -27,6 +27,10 @@ const textureLoader = new THREE.TextureLoader();
 
 // Floor
 const floorAlphaTexture = textureLoader.load('./floor/alpha.jpg'); // 경로에 static 적지 말 것. vite 가 처리한다.
+const floorColorTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_diff_1k.jpg');
+const floorARMTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_arm_1k.jpg');
+const floorNormalTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.jpg');
+const floorDisplacementTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.jpg');
 
 
 /**
@@ -67,6 +71,7 @@ const floor = new THREE.Mesh(
     new THREE.MeshStandardMaterial({
         alphaMap: floorAlphaTexture,
         transparent: true, // alpha 사용할 땐 transparent: true 속성줘야 된다.
+        map: floorColorTexture,
     })
 )
 floor.rotation.x = -Math.PI * 0.5;
