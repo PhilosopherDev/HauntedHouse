@@ -101,6 +101,16 @@ graveColorTexture.repeat.set(0.3, 0.4);
 graveARMTexture.repeat.set(0.3, 0.4);
 graveNormalTexture.repeat.set(0.3, 0.4);
 
+// Door
+const doorColorTexture = textureLoader.load('./door/color.jpg');
+const doorAlphaTexture = textureLoader.load('./door/alpha.jpg');
+const doorAmbientOcclusionTexture = textureLoader.load('./door/ambientOcclusion.jpg');
+const doorHeightTexture = textureLoader.load('./door/height.jpg');
+const doorNormalTexture = textureLoader.load('./door/normal.jpg');
+const doorMetalnessTexture = textureLoader.load('./door/metalness.jpg');
+const doorRoughnessTexture = textureLoader.load('./door/roughness.jpg');
+
+doorColorTexture.colorSpace = THREE.SRGBColorSpace;
 
 /**
  * House
@@ -194,7 +204,15 @@ house.add(roof);
 const door = new THREE.Mesh(
     new THREE.PlaneGeometry(doorMeasurements.width, doorMeasurements.height),
     new THREE.MeshStandardMaterial({
-        color: 'red' // z-fighting, 메쉬가 겹치면 색상이 껌뻑거린다
+        // color: 'red' // z-fighting, 메쉬가 겹치면 색상이 껌뻑거린다
+        map: doorColorTexture,
+        alphaMap: doorAlphaTexture, // 딱 문 크기에 맞는 alpha를 적용해서 문 크기를 맞춰주는 방식을 쓴다. 
+        transparent: true,
+        aoMap: doorAmbientOcclusionTexture,
+        displacementMap: doorHeightTexture, // displacement를 height 라고도 한다.
+        normalMap: doorNormalTexture,
+        metalnessMap: doorMetalnessTexture,
+        roughnessMap: doorRoughnessTexture,
     })
 )
 door.position.y += doorMeasurements.height / 2 - 0.1; // 딱 절반 맞추면 texture 적용했을 때 살짝 떠보일 수 있어서 0.1 땅에 묻어둔다.
