@@ -389,6 +389,17 @@ graves.children.forEach((grave) => {
     grave.receiveShadow = true;
 })
 
+// Mapping
+directionalLight.shadow.mapSize.width = 256;
+directionalLight.shadow.mapSize.height = 256;
+directionalLight.shadow.camera.top = 8;
+directionalLight.shadow.camera.right = 8;
+directionalLight.shadow.camera.bottom = -8;
+directionalLight.shadow.camera.left = -8;
+directionalLight.shadow.camera.near = 1;
+directionalLight.shadow.camera.far = 20;
+
+
 /**
  * Animate
  */
