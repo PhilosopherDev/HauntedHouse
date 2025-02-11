@@ -399,6 +399,19 @@ directionalLight.shadow.camera.left = -8;
 directionalLight.shadow.camera.near = 1;
 directionalLight.shadow.camera.far = 20;
 
+ghost1.shadow.mapSize.width = 256;
+ghost1.shadow.mapSize.height = 256;
+ghost1.shadow.camera.far = 10;
+
+ghost2.shadow.mapSize.width = 256;
+ghost2.shadow.mapSize.height = 256;
+ghost2.shadow.camera.far = 10;
+
+ghost3.shadow.mapSize.width = 256;
+ghost3.shadow.mapSize.height = 256;
+ghost3.shadow.camera.far = 10;
+
+
 
 /**
  * Animate
