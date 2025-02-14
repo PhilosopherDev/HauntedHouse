@@ -27,11 +27,11 @@ const scene = new THREE.Scene()
 const textureLoader = new THREE.TextureLoader();
 
 // Floor
-const floorAlphaTexture = textureLoader.load('./floor/alpha.jpg'); // 경로에 static 적지 말 것. vite 가 처리한다.
-const floorColorTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_diff_1k.jpg');
-const floorARMTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_arm_1k.jpg');
-const floorNormalTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.jpg');
-const floorDisplacementTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.jpg');
+const floorAlphaTexture = textureLoader.load('./floor/alpha.webp'); // 경로에 static 적지 말 것. vite 가 처리한다.
+const floorColorTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_diff_1k.webp');
+const floorARMTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_arm_1k.webp');
+const floorNormalTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_nor_gl_1k.webp');
+const floorDisplacementTexture = textureLoader.load('./floor/coast_sand_rocks_02_1k/coast_sand_rocks_02_disp_1k.webp');
 
 // 약간 색상이 회색을 띄어서 나오는데 이게 color texture의 경우 data texture와 달리sRGB 로 encoding 되어 있어서 그렇다고한다. 이 처리를 해줌으로써 Linear 변환 이후 정확한 계산 및 처리가 된다고 하는데 자세한건 차차 알아가자.
 floorColorTexture.colorSpace = THREE.SRGBColorSpace;
@@ -52,18 +52,18 @@ floorNormalTexture.wrapT = THREE.ReapeatWrapping;
 floorDisplacementTexture.wrapT = THREE.ReapeatWrapping;
 
 // Wall
-const wallColorTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_diff_1k.jpg');
-const wallARMTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_arm_1k.jpg');
-const wallNormalTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_nor_gl_1k.jpg');
+const wallColorTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_diff_1k.webp');
+const wallARMTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_arm_1k.webp');
+const wallNormalTexture = textureLoader.load('./wall/castle_brick_broken_06_1k/castle_brick_broken_06_nor_gl_1k.webp');
 
 wallColorTexture.colorSpace = THREE.SRGBColorSpace;
 
 // Roof
 // ConeGeometry 로 Pyramid 모양을 만들어서 조명이 이상하게 들어오는 문제가 생길 수 있다고 한다. 자세히 보면 벽돌도 사선으로 나온다. 
 // 1. 추후에 직접 blender로 모델 만들어서 uv unwrap으로 해결해볼 예정  2. BufferGeometry 로 직접 만들어서 해결 가능
-const roofColorTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_diff_1k.jpg');
-const roofARMTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_arm_1k.jpg');
-const roofNormalTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_nor_gl_1k.jpg');
+const roofColorTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_diff_1k.webp');
+const roofARMTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_arm_1k.webp');
+const roofNormalTexture = textureLoader.load('./roof/roof_slates_02_1k/roof_slates_02_nor_gl_1k.webp');
 
 roofColorTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -77,9 +77,9 @@ roofNormalTexture.wrapS = THREE.ReapeatWrapping;
 
 // Bush
 // 마찬가지로 SphereGeometry 에서도 정수리 부분이 이상하게 나온다. a-hole at the top. 이것도 Roof랑 동일하게 추후 해결 가능하다. 
-const bushColorTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_diff_1k.jpg');
-const bushARMTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_arm_1k.jpg');
-const bushNormalTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_nor_gl_1k.jpg');
+const bushColorTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_diff_1k.webp');
+const bushARMTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_arm_1k.webp');
+const bushNormalTexture = textureLoader.load('./bush/leaves_forest_ground_1k/leaves_forest_ground_nor_gl_1k.webp');
 
 bushColorTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -92,9 +92,9 @@ bushARMTexture.wrapS = THREE.ReapeatWrapping;
 bushNormalTexture.wrapS = THREE.ReapeatWrapping;
 
 // Grave
-const graveColorTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_diff_1k.jpg');
-const graveARMTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_arm_1k.jpg');
-const graveNormalTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_nor_gl_1k.jpg');
+const graveColorTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_diff_1k.webp');
+const graveARMTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_arm_1k.webp');
+const graveNormalTexture = textureLoader.load('./grave/plastered_stone_wall_1k/plastered_stone_wall_nor_gl_1k.webp');
 
 graveColorTexture.colorSpace = THREE.SRGBColorSpace;
 
@@ -103,13 +103,13 @@ graveARMTexture.repeat.set(0.3, 0.4);
 graveNormalTexture.repeat.set(0.3, 0.4);
 
 // Door
-const doorColorTexture = textureLoader.load('./door/color.jpg');
-const doorAlphaTexture = textureLoader.load('./door/alpha.jpg');
-const doorAmbientOcclusionTexture = textureLoader.load('./door/ambientOcclusion.jpg');
-const doorHeightTexture = textureLoader.load('./door/height.jpg');
-const doorNormalTexture = textureLoader.load('./door/normal.jpg');
-const doorMetalnessTexture = textureLoader.load('./door/metalness.jpg');
-const doorRoughnessTexture = textureLoader.load('./door/roughness.jpg');
+const doorColorTexture = textureLoader.load('./door/color.webp');
+const doorAlphaTexture = textureLoader.load('./door/alpha.webp');
+const doorAmbientOcclusionTexture = textureLoader.load('./door/ambientOcclusion.webp');
+const doorHeightTexture = textureLoader.load('./door/height.webp');
+const doorNormalTexture = textureLoader.load('./door/normal.webp');
+const doorMetalnessTexture = textureLoader.load('./door/metalness.webp');
+const doorRoughnessTexture = textureLoader.load('./door/roughness.webp');
 
 doorColorTexture.colorSpace = THREE.SRGBColorSpace;
 
